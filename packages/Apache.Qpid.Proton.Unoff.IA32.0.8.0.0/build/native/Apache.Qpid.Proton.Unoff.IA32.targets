@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="Apache_Qpid_Proton_Unoff_IA32_init">
+  <PropertyGroup Label="Default initializers for properties">
+    <Linkage-Apache_Qpid_Proton_Unoff_IA32 Condition="'$(Linkage-Apache_Qpid_Proton_Unoff_IA32)' == ''">dynamic</Linkage-Apache_Qpid_Proton_Unoff_IA32>
+    <CallingConvention-Apache_Qpid_Proton_Unoff_IA32 Condition="'$(CallingConvention-Apache_Qpid_Proton_Unoff_IA32)' == ''">cdecl</CallingConvention-Apache_Qpid_Proton_Unoff_IA32>
+  </PropertyGroup>
+  <ItemDefinitionGroup Label="Win32" Condition="'$(Platform.ToLower())' == 'win32'">
+    <Link>
+      <AdditionalDependencies>$(MSBuildThisFileDirectory)../..//build/native/lib/Win32\qpid-proton.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)../..//build/native/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)../..//build/native/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)\default-propertiesui.xml" />
+  </ItemGroup>
+  <UsingTask TaskName="Apache_Qpid_Proton_Unoff_IA32_Contains" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" TaskFactory="CodeTaskFactory">
+    <ParameterGroup>
+      <Text Output="false" ParameterType="System.String" />
+      <Library Output="false" Required="true" ParameterType="System.String" />
+      <Value Output="false" Required="true" ParameterType="System.String" />
+      <Result Output="true" ParameterType="System.String" />
+    </ParameterGroup>
+    <Task>
+      <Code>Result = ((Text ?? "").Split(';').Contains(Library) ) ? Value : String.Empty;</Code>
+    </Task>
+  </UsingTask>
+  <Target Name="Apache_Qpid_Proton_Unoff_IA32_init">
+    <Apache_Qpid_Proton_Unoff_IA32_Contains Text="Linkage-dynamic" Library="Apache_Qpid_Proton_Unoff_IA32" Value="dynamic" Condition="'$(Linkage-Apache_Qpid_Proton_Unoff_IA32)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-Apache_Qpid_Proton_Unoff_IA32" />
+    </Apache_Qpid_Proton_Unoff_IA32_Contains>
+    <Apache_Qpid_Proton_Unoff_IA32_Contains Text="Linkage-static" Library="Apache_Qpid_Proton_Unoff_IA32" Value="static" Condition="'$(Linkage-Apache_Qpid_Proton_Unoff_IA32)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-Apache_Qpid_Proton_Unoff_IA32" />
+    </Apache_Qpid_Proton_Unoff_IA32_Contains>
+    <Apache_Qpid_Proton_Unoff_IA32_Contains Text="Linkage-ltcg" Library="Apache_Qpid_Proton_Unoff_IA32" Value="ltcg" Condition="'$(Linkage-Apache_Qpid_Proton_Unoff_IA32)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-Apache_Qpid_Proton_Unoff_IA32" />
+    </Apache_Qpid_Proton_Unoff_IA32_Contains>
+    <Apache_Qpid_Proton_Unoff_IA32_Contains Text="Linkage-sxs" Library="Apache_Qpid_Proton_Unoff_IA32" Value="sxs" Condition="'$(Linkage-Apache_Qpid_Proton_Unoff_IA32)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-Apache_Qpid_Proton_Unoff_IA32" />
+    </Apache_Qpid_Proton_Unoff_IA32_Contains>
+    <Apache_Qpid_Proton_Unoff_IA32_Contains Text="CallingConvention-cdecl" Library="Apache_Qpid_Proton_Unoff_IA32" Value="cdecl" Condition="'$(CallingConvention-Apache_Qpid_Proton_Unoff_IA32)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-Apache_Qpid_Proton_Unoff_IA32" />
+    </Apache_Qpid_Proton_Unoff_IA32_Contains>
+    <Apache_Qpid_Proton_Unoff_IA32_Contains Text="CallingConvention-stdcall" Library="Apache_Qpid_Proton_Unoff_IA32" Value="stdcall" Condition="'$(CallingConvention-Apache_Qpid_Proton_Unoff_IA32)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-Apache_Qpid_Proton_Unoff_IA32" />
+    </Apache_Qpid_Proton_Unoff_IA32_Contains>
+    <Apache_Qpid_Proton_Unoff_IA32_Contains Text="CallingConvention-fastcall" Library="Apache_Qpid_Proton_Unoff_IA32" Value="fastcall" Condition="'$(CallingConvention-Apache_Qpid_Proton_Unoff_IA32)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-Apache_Qpid_Proton_Unoff_IA32" />
+    </Apache_Qpid_Proton_Unoff_IA32_Contains>
+    <Apache_Qpid_Proton_Unoff_IA32_Contains Text="CallingConvention-thiscall" Library="Apache_Qpid_Proton_Unoff_IA32" Value="thiscall" Condition="'$(CallingConvention-Apache_Qpid_Proton_Unoff_IA32)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-Apache_Qpid_Proton_Unoff_IA32" />
+    </Apache_Qpid_Proton_Unoff_IA32_Contains>
+    <Apache_Qpid_Proton_Unoff_IA32_Contains Text="CallingConvention-clrcall" Library="Apache_Qpid_Proton_Unoff_IA32" Value="clrcall" Condition="'$(CallingConvention-Apache_Qpid_Proton_Unoff_IA32)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-Apache_Qpid_Proton_Unoff_IA32" />
+    </Apache_Qpid_Proton_Unoff_IA32_Contains>
+  </Target>
+</Project>

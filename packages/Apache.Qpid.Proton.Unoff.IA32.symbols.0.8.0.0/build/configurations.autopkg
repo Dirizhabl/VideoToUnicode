@@ -1,0 +1,7 @@
+configurations {
+    Platform { 
+        key : "Platform";
+        choices : { Win32 };
+        Win32.aliases : { x86, win32, ia32, 386 };
+    };
+};
